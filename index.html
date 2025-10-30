@@ -1,1 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Next Season Fitness｜adjustment-lab</title>
+<style>
+:root {
+  --bg: #f7f7f7;
+  --text: #222;
+  --accent: #00a37a;
+  --card: #fff;
+  --border: #ddd;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+}
+header {
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+}
+main {
+  padding: 16px;
+  max-width: 480px;
+  margin: auto;
+}
+section {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+h2 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+.exercise-list button {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  text-align: left;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+.exercise-list button:hover {
+  background: #f0fdf7;
+  border-color: var(--accent);
+}
+label {
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 10px;
+}
+input[type="number"], textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-top: 4px;
+}
+input[type="range"] {
+  width: 100%;
+  margin-top: 6px;
+}
+.save-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+.save-btn:hover { opacity: 0.9; }
 
+.feedback {
+  background: #eefdf4;
+  border-left: 4px solid var(--accent);
+  padding: 8px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+}
+.modal-content {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 60px auto;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.modal-content img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.close {
+  float: right;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--accent);
+}
+.close:hover { opacity: 0.7; }
+</style>
+</head>
+
+<body>
+<header>Next Season Fitness｜adjustment-lab</header>
+<main>
+
+<!-- 体幹セクション -->
+<section>
+  <h2>リブゲージ体幹5種</h2>
+  <div class="exercise-list">
+    <button data-ex="リブシフト・プランク">リブシフト・プランク</button>
+    <button data-ex="サイドリブ・プランク">サイドリブ・プランク</button>
+    <button data-ex="リブローテーション・ベア">リブローテーション・ベア</button>
+    <button data-ex="リブリード・ヒップロール">リブリード・ヒップロール</button>
+    <button data-ex="リブローテーション・スフィンクス">リブローテーション・スフィンクス</button>
+  </div>
+</section>
+
+<!-- DAY1〜DAY3 -->
+<section>
+  <h2>DAY1｜呼吸性持久 × リブ安定</h2>
+  <div class="exercise-list">
+    <button data-ex="HEXバー・スプリントDL">HEXバー・スプリントDL</button>
+    <button data-ex="ケトルベル・リブドロップスイング">ケトルベル・リブドロップスイング</button>
+    <button data-ex="自走式トレッドミル 10s×8">自走式トレッドミル 10s×8</button>
+    <button data-ex="プランクtoベアクロール">プランクtoベアクロール</button>
+  </div>
+</section>
+
+<section>
+  <h2>DAY2｜可動性 × 反応性</h2>
+  <div class="exercise-list">
+    <button data-ex="MBローテーショントス">MBローテーショントス</button>
+    <button data-ex="スライドボード・ラテラルランジ">スライドボード・ラテラルランジ</button>
+    <button data-ex="トレッドミル 15s×10">トレッドミル 15s×10</button>
+    <button data-ex="ハンドリリースプッシュアップ">ハンドリリースプッシュアップ</button>
+  </div>
+</section>
+
+<section>
+  <h2>DAY3｜反応持久＋リカバリー</h2>
+  <div class="exercise-list">
+    <button data-ex="トレッドミル 30s×6">トレッドミル 30s×6</button>
+    <button data-ex="MBチェストパス→リバウンドキャッチ">MBチェストパス→リバウンドキャッチ</button>
+    <button data-ex="デッドバグマーチ">デッドバグマーチ</button>
+  </div>
+</section>
+
+<!-- パフォーマンス入力 -->
+<section>
+  <h2>パフォーマンス入力</h2>
+  <label>CMJ（cm）</label>
+  <input type="number" id="cmj">
+  <label>RSI（m/s）</label>
+  <input type="number" id="rsi" step="0.01">
+  <label>平均心拍（bpm）</label>
+  <input type="number" id="avgHR">
+  <label>最大心拍（bpm）</label>
+  <input type="number" id="maxHR">
+  <label>回復時間（秒）</label>
+  <input type="number" id="recoveryTime">
+  <h2>主観RPE（疲労度）</h2>
+  <input type="range" id="rpe" min="0" max="10" step="1">
+  <div id="rpeVal">RPE: 0</div>
+  <label>コメント</label>
+  <textarea id="comment" rows="3"></textarea>
+  <button class="save-btn" id="saveBtn">データを保存</button>
+  <div class="feedback" id="feedback"></div>
+</section>
+
+</main>
+
+<!-- Modal -->
+<div class="modal" id="exerciseModal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 id="exTitle"></h3>
+    <img id="exImage" src="" alt="種目画像">
+    <p id="exDetail"></p>
+  </div>
+</div>
+
+<script>
+const details = {
+  // 体幹
+  "リブシフト・プランク": "目的：胸郭の前後滑走と前方圧制御。\n方法：肘つきプランク姿勢で胸郭を前後にスライド。\n回数：10往復×2セット。",
+  "サイドリブ・プランク": "目的：胸郭の側方安定と腹斜筋活性。\n方法：サイドプランクで胸郭を上下に動かす。\n回数：各側10回×2セット。",
+  "リブローテーション・ベア": "目的：胸郭回旋と骨盤分離。\n方法：膝を1cm浮かせたベア姿勢で肋骨を回旋。\n回数：各側8回×2セット。",
+  "リブリード・ヒップロール": "目的：肋骨主導で骨盤を倒す連動性。\n方法：仰向けで両膝90°、肋骨で骨盤を左右に倒す。\n回数：各側8回×2セット。",
+  "リブローテーション・スフィンクス": "目的：肋骨スライドと肩甲帯分離。\n方法：スフィンクス姿勢で片側の肋骨を前方へスライド。\n回数：各側5回×2セット。",
+
+  // フィジカル
+  "HEXバー・スプリントDL": "目的：軸足膝の安定と股関節出力。\n回数：3〜4セット×5〜6回。\n重量：60〜70%1RM。",
+  "ケトルベル・リブドロップスイング": "目的：胸郭の上下運動と背部リリース。\n回数：3×10〜12。\n重量：4〜6kg。",
+  "自走式トレッドミル 10s×8": "目的：出力維持と心拍制御。\n方法：全力10秒→レスト20秒×8。",
+  "プランクtoベアクロール": "目的：体幹安定下での前方移動。\n回数：3往復。",
+  "MBローテーショントス": "目的：胸郭主導の回旋出力。\n回数：3×8。\n重量：2〜3kg。",
+  "スライドボード・ラテラルランジ": "目的：股関節内外旋滑走の強化。\n回数：3×10。",
+  "トレッドミル 15s×10": "目的：VO₂max刺激・呼吸筋強化。\n方法：15秒全力→30秒レスト×10。",
+  "ハンドリリースプッシュアップ": "目的：胸郭前方圧と上肢持久出力。\n回数：3×15。",
+  "トレッドミル 30s×6": "目的：有酸素＋無酸素閾値強化。\n方法：30秒走→30秒レスト×6。",
+  "MBチェストパス→リバウンドキャッチ": "目的：胸郭前方出力と反応神経。\n回数：3×12。",
+  "デッドバグマーチ": "目的：呼吸下での体幹安定。\n回数：2×10。"
+};
+
+const images = {
+  "リブシフト・プランク": "images/core01.jpg",
+  "サイドリブ・プランク": "images/core02.jpg",
+  "リブローテーション・ベア": "images/core03.jpg",
+  "リブリード・ヒップロール": "images/core04.jpg",
+  "リブローテーション・スフィンクス": "images/core05.jpg",
+  "HEXバー・スプリントDL": "images/hex_dl.jpg",
+  "ケトルベル・リブドロップスイング": "images/kb_swing.jpg",
+  "自走式トレッドミル 10s×8": "images/treadmill10s.jpg",
+  "プランクtoベアクロール": "images/plank_bear.jpg",
+  "MBローテーショントス": "images/mb_toss.jpg",
+  "スライドボード・ラテラルランジ": "images/slide_lunge.jpg",
+  "トレッドミル 15s×10": "images/treadmill15s.jpg",
+  "ハンドリリースプッシュアップ": "images/pushup.jpg",
+  "トレッドミル 30s×6": "images/treadmill30s.jpg",
+  "MBチェストパス→リバウンドキャッチ": "images/mb_pass.jpg",
+  "デッドバグマーチ": "images/deadbug.jpg"
+};
+
+// Modal機能
+const modal = document.getElementById('exerciseModal');
+const exTitle = document.getElementById('exTitle');
+const exDetail = document.getElementById('exDetail');
+const exImage = document.getElementById('exImage');
+const closeBtn = document.querySelector('.close');
+
+document.querySelectorAll('.exercise-list button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const ex = btn.dataset.ex;
+    exTitle.textContent = ex;
+    exDetail.textContent = details[ex] || "詳細情報なし。";
+    exImage.src = images[ex] || "images/noimage.jpg";
+    modal.style.display = 'block';
+  });
+});
+closeBtn.onclick = ()=> modal.style.display='none';
+window.onclick = e=>{ if(e.target==modal) modal.style.display='none'; };
+
+// RPE表示
+const rpeSlider=document.getElementById('rpe');
+const rpeVal=document.getElementById('rpeVal');
+rpeSlider.addEventListener('input',()=>{ rpeVal.textContent="RPE: "+rpeSlider.value; });
+
+// 保存
+document.getElementById('saveBtn').addEventListener('click',()=>{
+  const data={
+    cmj: document.getElementById('cmj').value,
+    rsi: document.getElementById('rsi').value,
+    avgHR: document.getElementById('avgHR').value,
+    maxHR: document.getElementById('maxHR').value,
+    recovery: document.getElementById('recoveryTime').value,
+    rpe: rpeSlider.value,
+    comment: document.getElementById('comment').value,
+    date: new Date().toLocaleString()
+  };
+  localStorage.setItem('fitnessLog',JSON.stringify(data));
+  showFeedback(data);
+  alert('データを保存しました');
+});
+
+// 自動FB
+function showFeedback(data){
+  let fb="";
+  const cmj=parseFloat(data.cmj)||0;
+  const rsi=parseFloat(data.rsi)||0;
+  const hr=parseFloat(data.maxHR)||0;
+  const rec=parseFloat(data.recovery)||0;
+  const rpe=parseFloat(data.rpe)||0;
+  if(cmj && cmj<64) fb+="出力発揮低下（股関節リード・リブ下制を再確認）<br>";
+  if(rsi && rsi<2.2) fb+="反応性低下（リブシフト・ベアで再活性）<br>";
+  if(hr>90 && rec>25) fb+="回復課題：呼吸・心拍制御強化。<br>";
+  if(hr<85 && rpe>=8) fb+="主観負荷過多：動作効率の見直し。<br>";
+  if(!fb) fb="良好：出力・反応・回復バランス安定。";
+  document.getElementById('feedback').innerHTML=fb;
+}
+
+// 初期ロード
+window.addEventListener('load',()=>{
+  if(!localStorage.getItem('initShown')){
+    alert('Next Season Fitness｜初期設定完了');
+    localStorage.setItem('initShown','1');
+  }
+  const saved=localStorage.getItem('fitnessLog');
+  if(saved){
+    const d=JSON.parse(saved);
+    document.getElementById('cmj').value=d.cmj;
+    document.getElementById('rsi').value=d.rsi;
+    document.getElementById('avgHR').value=d.avgHR;
+    document.getElementById('maxHR').value=d.maxHR;
+    document.getElementById('recoveryTime').value=d.recovery;
+    rpeSlider.value=d.rpe; rpeVal.textContent="RPE: "+d.rpe;
+    document.getElementById('comment').value=d.comment;
+    showFeedback(d);
+  }
+});
+</script>
+</body>
+</html>
