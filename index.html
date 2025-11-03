@@ -106,6 +106,8 @@ input[type="range"] {
   font-size: 0.9rem;
   border-radius: 6px;
 }
+
+/* Footer */
 footer {
   text-align: center;
   font-size: 0.8rem;
@@ -147,6 +149,15 @@ footer {
 .close:hover { opacity: 0.7; }
 </style>
 </head>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js");
+  });
+}
+</script>
+
 <body>
 <header>Next Season Fitness｜FKK #8</header>
 <main>
@@ -173,13 +184,13 @@ footer {
 
 <!-- DAY2 -->
 <section>
-  <h2>DAY2｜可動性 × 反応性（バンド中心）</h2>
+  <h2>DAY2｜可動性 × 反応性</h2>
   <div class="exercise-list">
-    <button data-ex="バンド・リブローテーション">バンド・リブローテーション</button>
-    <button data-ex="TRX・ラテラルプランクリーチ">TRX・ラテラルプランクリーチ</button>
-    <button data-ex="バンド・ヒップスライド">バンド・ヒップスライド</button>
+    <button data-ex="スライドボード・ラテラルランジ">スライドボード・ラテラルランジ</button>
     <button data-ex="トレッドミル 15s×10">トレッドミル 15s×10</button>
-    <button data-ex="リアクション・バウンス">リアクション・バウンス</button>
+    <button data-ex="プッシュアップ to ヒップリーチ">プッシュアップ to ヒップリーチ</button>
+    <button data-ex="リブスライド・ランジ">リブスライド・ランジ</button>
+    <button data-ex="レッドコード・スタビリティヒンジ">レッドコード・スタビリティヒンジ</button>
   </div>
 </section>
 
@@ -190,12 +201,12 @@ footer {
     <button data-ex="トレッドミル 15s×45s×8">トレッドミル 15s×45s×8</button>
     <button data-ex="HEXバー・スプリントDL（軽負荷）">HEXバー・スプリントDL（軽負荷）</button>
     <button data-ex="リブリード・ヒップロール">リブリード・ヒップロール</button>
-    <button data-ex="サイドリブ・プランク">サイドリブ・プランク</button>
-    <button data-ex="スライドボード・ラテラルランジ（低強度）">スライドボード・ラテラルランジ（低強度）</button>
+    <button data-ex="リブドライブ・バウンス">リブドライブ・バウンス</button>
+    <button data-ex="スライドボード・バックランジ">スライドボード・バックランジ</button>
   </div>
 </section>
 
-<!-- 入力フォーム -->
+<!-- 入力 -->
 <section>
   <h2>パフォーマンス入力</h2>
   <label>CMJ（cm）</label><input type="number" id="cmj">
@@ -224,31 +235,25 @@ footer {
 </div>
 
 <script>
-// === 種目詳細 ===
+// === 各種目詳細 ===
 const details = {
-  // --- 既存維持 ---
   "リブゲージ体幹5種":"①リブシフト・プランク\n②サイドリブ・プランク\n③リブローテーション・ベア\n④リブリード・ヒップロール\n⑤リブローテーション・スフィンクス",
   "HEXバー・スプリントDL":"目的：股関節伸展と地面反力の連動。軸足膝の安定強化。\nフォーム：背中を反らさず胸郭を前に出す。バーはすねの真横を通す。\n負荷：60〜70%1RM ×5〜6回 ×3セット。\nミス：背部主導で引く、膝が内側に入る。",
   "自走式トレッドミル 10s×8":"目的：最大出力を短時間で繰り返す。VO₂max向上。\nフォーム：胸郭を前に送り、頭がブレないように。リブで地面を押す意識。\n負荷：全力10秒→レスト20秒×8本。\nミス：腕振りが先行、呼吸が止まる。",
   "ハンドリリースプッシュアップ":"目的：胸郭前方圧の維持と上肢出力耐性。\nフォーム：胸を地面につけて一瞬リリース、胸郭を押し出すように戻す。\n負荷：15回×3セット。\nミス：腰を反らす、肘主導になる。",
   "デッドバグマーチ":"目的：呼吸下で体幹を安定させながら四肢を動かす。\nフォーム：背中全体を床に接地、呼気で肋骨を下げながら脚を動かす。\n負荷：各脚10回×2セット。\nミス：腰が浮く、呼吸が止まる。",
-
-  // --- Day2改訂バージョン（MB投擲不可・ケーブルなし対応） ---
-  "バンド・リブローテーション":"目的：胸郭回旋と肩甲帯の連動を軽負荷で強化。\n方法：チューブを胸の高さで固定し、リブ主導で回旋。腕で引かない。\n回数：8〜10回×3セット。\nポイント：呼吸と回旋を同期させ、腹圧を維持。",
-  "TRX・ラテラルプランクリーチ":"目的：側方安定性とリブ側屈の統合。\n方法：TRXを片手で保持し、反対側リブを引き下げながらプランク姿勢を保つ。\n回数：各側8回×2セット。\nポイント：肋骨を動かす意識で腕に頼らない。",
-  "バンド・ヒップスライド":"目的：股関節と胸郭の滑走連動を養う。\n方法：チューブを骨盤にかけ、横方向にスライドしながらリブで制御。\n回数：8往復×2セット。\nポイント：股関節主導ではなくリブ主導で動かす。",
+  "スライドボード・ラテラルランジ":"目的：股関節外転筋・内転筋の滑走性と安定化。\nフォーム：滑る脚の股関節を伸展し、軸脚で受け止める。\n負荷：10回×3セット。\nミス：体幹が傾く、胸郭が後退する。",
   "トレッドミル 15s×10":"目的：呼吸筋への持続刺激と酸素摂取効率の向上。\nフォーム：胸郭を前へ押し出し、腕を軽く振る。\n負荷：全力15秒→レスト30秒×10本。\nミス：前傾しすぎ、腰で走る。",
-  "リアクション・バウンス":"目的：接地反応と呼吸リズムの再現性強化。\n方法：20秒間、軽いジャンプでテンポ変化に反応。\nポイント：呼吸と動作を同期。胸郭の弾性を感じる。",
-
-  // --- Day3維持 ---
-  "トレッドミル 15s×45s×8":"目的：回復力強化（有酸素＋心拍コントロール）。\nフォーム：胸郭で呼吸をコントロールしながら走る。\n負荷：全力15秒→レスト45秒×8本。HRmax80〜85%維持。\nミス：呼吸が浅く、胸郭が硬まる。",
-  "HEXバー・スプリントDL（軽負荷）":"目的：疲労下での出力維持と安定性向上。\n方法：フォーム維持を優先し、50%1RM×6回×3セット。",
   "リブリード・ヒップロール":"目的：肋骨主導で骨盤を倒す連動性。\n方法：仰向けで両膝90°、肋骨で骨盤を左右に倒す。\n回数：10回×2セット。",
   "サイドリブ・プランク":"目的：胸郭の側方安定と腹斜筋活性。\n方法：サイドプランクで胸郭を上下に動かす。\n回数：各側10回×2セット。",
-  "スライドボード・ラテラルランジ（低強度）":"目的：可動域の維持と股関節周囲のリカバリー。\n方法：滑る脚の接地感を保ちながら、低負荷でコントロール。\n回数：8回×2セット。"
+  "プッシュアップ to ヒップリーチ":"目的：胸郭前方圧と背部伸展の協調。\n方法：腕立て伏せ後、片脚を踏み込みながら反対手を上げる。\n回数：8〜10回×2セット。\nミス：骨盤が開く、呼吸が止まる。",
+  "リブスライド・ランジ":"目的：胸郭の横滑りと股関節内外旋の協調。\n方法：ランジ姿勢でリブを左右にスライド。\n回数：10往復×2セット。\nポイント：胸郭主導で脚の安定を保つ。",
+  "レッドコード・スタビリティヒンジ":"目的：体幹と下肢の分離制御。\n方法：レッドコードに両手を掛け、ヒンジ動作で胸郭を前へ送る。\n回数：8〜10回×2セット。\nポイント：ハムストリングスに張りを感じる範囲で止める。",
+  "リブドライブ・バウンス":"目的：胸郭ドライブと下肢反射反応の統合。\n方法：軽いジャンプを繰り返し、胸郭の弾性で接地リズムを調整。\n時間：20〜30秒×3セット。\nポイント：呼吸を止めず、胸郭で上下リズムを作る。",
+  "スライドボード・バックランジ":"目的：股関節後方滑走と軸足安定性。\n方法：片脚を後方に滑らせながら前脚で支える。\n回数：各脚10回×2セット。\nミス：体幹が前に倒れる、膝が内側に入る。"
 };
 
-// === モーダル ===
+// === モーダル表示 ===
 const modal=document.getElementById('exerciseModal');
 const exTitle=document.getElementById('exTitle');
 const exDetail=document.getElementById('exDetail');
@@ -271,7 +276,7 @@ const rpeSlider=document.getElementById('rpe');
 const rpeVal=document.getElementById('rpeVal');
 rpeSlider.addEventListener('input',()=>{rpeVal.textContent="RPE: "+rpeSlider.value;});
 
-// === 保存処理 ===
+// === データ保存 ===
 document.getElementById('saveBtn').addEventListener('click',()=>{
   const data={
     cmj:document.getElementById('cmj').value,
@@ -303,6 +308,27 @@ function showFeedback(data){
   if(!fb)fb="良好：出力・反応・回復バランス安定。";
   document.getElementById('feedback').innerHTML=fb;
 }
+
+// === 初回ロード ===
+window.addEventListener('load',()=>{
+  if(!localStorage.getItem('initShown')){
+    alert('Next Season Fitness｜初期設定完了');
+    localStorage.setItem('initShown','1');
+  }
+  const saved=localStorage.getItem('fitnessLog');
+  if(saved){
+    const d=JSON.parse(saved);
+    document.getElementById('cmj').value=d.cmj;
+    document.getElementById('rsi').value=d.rsi;
+    document.getElementById('avgHR').value=d.avgHR;
+    document.getElementById('maxHR').value=d.maxHR;
+    document.getElementById('recoveryTime').value=d.recovery;
+    rpeSlider.value=d.rpe;
+    rpeVal.textContent="RPE: "+d.rpe;
+    document.getElementById('comment').value=d.comment;
+    showFeedback(d);
+  }
+});
 </script>
 </body>
 </html>
