@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<!-- ✅ PWA設定 -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#00a37a">
 <link rel="apple-touch-icon" sizes="192x192" href="images/icon-192.png">
@@ -10,6 +12,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Next Season Fitness">
+
 <title>Next Season Fitness｜FKK #8</title>
 
 <style>
@@ -151,55 +154,55 @@ footer {
 <header>Next Season Fitness｜FKK #8</header>
 <main>
 
-<!-- 🔹リブゲージ体幹5種（個別表示） -->
+<!-- === 体幹（ウォームアップ） === -->
 <section>
-  <h2>リブゲージ体幹5種（毎日）</h2>
+  <h2>リブゲージ体幹5種</h2>
   <div class="exercise-list">
-    <button data-ex="リブシフト・プランク">① リブシフト・プランク</button>
-    <button data-ex="サイドリブ・プランク">② サイドリブ・プランク</button>
-    <button data-ex="リブローテーション・ベア">③ リブローテーション・ベア</button>
-    <button data-ex="リブリード・ヒップロール">④ リブリード・ヒップロール</button>
-    <button data-ex="リブローテーション・スフィンクス">⑤ リブローテーション・スフィンクス</button>
+    <button data-ex="リブシフト・プランク">リブシフト・プランク</button>
+    <button data-ex="サイドリブ・プランク">サイドリブ・プランク</button>
+    <button data-ex="リブローテーション・ベア">リブローテーション・ベア</button>
+    <button data-ex="リブリード・ヒップロール">リブリード・ヒップロール</button>
+    <button data-ex="リブローテーション・スフィンクス">リブローテーション・スフィンクス</button>
   </div>
 </section>
 
-<!-- 🔹DAY1 -->
+<!-- === DAY1 === -->
 <section>
   <h2>DAY1｜呼吸性持久 × リブ安定</h2>
   <div class="exercise-list">
     <button data-ex="HEXバー・スプリントDL">HEXバー・スプリントDL</button>
+    <button data-ex="スプリント・ランジステップ">スプリント・ランジステップ</button>
     <button data-ex="自走式トレッドミル 10s×8">自走式トレッドミル 10s×8</button>
     <button data-ex="ハンドリリースプッシュアップ">ハンドリリースプッシュアップ</button>
-    <button data-ex="スプリント・ランジステップ">スプリント・ランジステップ</button>
     <button data-ex="デッドバグマーチ">デッドバグマーチ</button>
   </div>
 </section>
 
-<!-- 🔹DAY2 -->
+<!-- === DAY2 === -->
 <section>
   <h2>DAY2｜可動性 × 反応性</h2>
   <div class="exercise-list">
-    <button data-ex="MBローテーショントス">MBローテーショントス</button>
+    <button data-ex="リブスライド・ランジ">リブスライド・ランジ</button>
     <button data-ex="スライドボード・ラテラルランジ">スライドボード・ラテラルランジ</button>
     <button data-ex="トレッドミル 15s×10">トレッドミル 15s×10</button>
-    <button data-ex="MBチェストパス→リバウンドキャッチ">MBチェストパス→リバウンドキャッチ</button>
-    <button data-ex="リブスライド・ランジ">リブスライド・ランジ</button>
+    <button data-ex="ハンドウォーク to プランク">ハンドウォーク to プランク</button>
+    <button data-ex="リアクティブ・ジャンプ">リアクティブ・ジャンプ</button>
   </div>
 </section>
 
-<!-- 🔹DAY3 -->
+<!-- === DAY3 === -->
 <section>
   <h2>DAY3｜反応持久＋リカバリー</h2>
   <div class="exercise-list">
     <button data-ex="トレッドミル 15s×45s×8">トレッドミル 15s×45s×8</button>
     <button data-ex="HEXバー・スプリントDL（軽負荷）">HEXバー・スプリントDL（軽負荷）</button>
     <button data-ex="リブリード・ヒップロール">リブリード・ヒップロール</button>
-    <button data-ex="サイドリブ・プランク">サイドリブ・プランク</button>
-    <button data-ex="リブドライブ・バウンス">リブドライブ・バウンス</button>
+    <button data-ex="リアクティブ・スクワット">リアクティブ・スクワット</button>
+    <button data-ex="スライドボード・スプリント">スライドボード・スプリント</button>
   </div>
 </section>
 
-<!-- 🔹入力フォーム -->
+<!-- === パフォーマンス入力 === -->
 <section>
   <h2>パフォーマンス入力</h2>
   <label>CMJ（cm）</label><input type="number" id="cmj">
@@ -214,10 +217,10 @@ footer {
   <div class="feedback" id="feedback"></div>
 </section>
 
-<footer>©︎adjustment-lab｜2025</footer>
+<footer>©︎ adjustment-lab｜2025</footer>
 </main>
 
-<!-- 🔹モーダル -->
+<!-- === モーダル === -->
 <div class="modal" id="exerciseModal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -230,27 +233,36 @@ footer {
 <script>
 // === 各種目詳細 ===
 const details = {
-  "リブシフト・プランク":"目的：胸郭の前後滑走と前方圧制御。\n方法：肘つきプランクで胸郭を前後にスライド。\n回数：10往復×2セット。",
-  "サイドリブ・プランク":"目的：胸郭の側方安定と腹斜筋活性。\n方法：サイドプランクで胸郭を上下に動かす。\n回数：各側10回×2セット。",
-  "リブローテーション・ベア":"目的：胸郭回旋と骨盤分離。\n方法：膝を1cm浮かせたベア姿勢で肋骨を回旋。\n回数：各側10回×2セット。",
-  "リブリード・ヒップロール":"目的：肋骨主導で骨盤を倒す連動性。\n方法：仰向けで両膝90°、肋骨で骨盤を左右に倒す。\n回数：10回×2セット。",
-  "リブローテーション・スフィンクス":"目的：肋骨スライドと肩甲帯分離。\n方法：スフィンクス姿勢で片側の肋骨を前方へスライド。\n回数：各側5回×2セット。",
+  // === 体幹5種 ===
+  "リブシフト・プランク":"目的：胸郭の前後滑走と前方圧制御。\n方法：肘つきプランクで胸郭を前後にスライド。\n回数：10往復×2セット。\nポイント：骨盤は動かさず、肋骨のみを前後に動かす。",
+  "サイドリブ・プランク":"目的：胸郭の側方安定と腹斜筋活性。\n方法：サイドプランクで胸郭を上下に動かす。\n回数：各側10回×2セット。\nポイント：腰を持ち上げる意識ではなく、肋骨で支える。",
+  "リブローテーション・ベア":"目的：胸郭回旋と骨盤分離。\n方法：膝を1cm浮かせたベア姿勢で肋骨を回旋。\n回数：各側10回×2セット。\nポイント：骨盤を固定し、胸郭の動きを感じ取る。",
+  "リブリード・ヒップロール":"目的：肋骨主導で骨盤を倒す連動性。\n方法：仰向けで両膝90°、肋骨で骨盤を左右に倒す。\n回数：10回×2セット。\nポイント：腹部を硬くせず、肋骨のリードで骨盤を転がす。",
+  "リブローテーション・スフィンクス":"目的：肋骨スライドと肩甲帯分離。\n方法：スフィンクス姿勢で片側の肋骨を前方へスライド。\n回数：各側5回×2セット。\nポイント：肩で押さず、胸郭で動かす感覚を掴む。",
+
+  // === DAY1 ===
   "HEXバー・スプリントDL":"目的：股関節伸展と地面反力の連動。軸足膝の安定強化。\nフォーム：背中を反らさず胸郭を前に出す。バーはすねの真横を通す。\n負荷：60〜70%1RM ×5〜6回 ×3セット。\nミス：背部主導で引く、膝が内側に入る。",
+  "スプリント・ランジステップ":"目的：地面反力と脚部リズムの連動性強化。\n方法：ランジ姿勢から素早く切り返して反対脚を前に出す。\n回数：各脚6〜8回×3セット。\nポイント：上半身を静かに、脚の反動を利用して弾むように動く。",
   "自走式トレッドミル 10s×8":"目的：最大出力を短時間で繰り返す。VO₂max向上。\nフォーム：胸郭を前に送り、頭がブレないように。リブで地面を押す意識。\n負荷：全力10秒→レスト20秒×8本。\nミス：腕振りが先行、呼吸が止まる。",
   "ハンドリリースプッシュアップ":"目的：胸郭前方圧の維持と上肢出力耐性。\nフォーム：胸を地面につけて一瞬リリース、胸郭を押し出すように戻す。\n負荷：15回×3セット。\nミス：腰を反らす、肘主導になる。",
-  "スプリント・ランジステップ":"目的：地面反力と脚部リズムの連動性強化。\n方法：ランジ姿勢から素早く切り返して反対脚を前に出す。\n回数：各脚6〜8回×3セット。",
-  "デッドバグマーチ":"目的：呼吸下で体幹を安定させながら四肢を動かす。\nフォーム：背中全体を床に接地、呼気で肋骨を下げながら脚を動かす。\n負荷：各脚10回×2セット。",
-  "MBローテーショントス":"目的：胸郭主導で回旋出力を作る。\nフォーム：両脚を肩幅、軸足に荷重して肋骨で投げる。\n負荷：2〜3kg×8回×3セット。",
-  "スライドボード・ラテラルランジ":"目的：股関節外転筋・内転筋の滑走性と安定化。\nフォーム：滑る脚の股関節を伸展し、軸脚で受け止める。\n負荷：10回×3セット。",
-  "トレッドミル 15s×10":"目的：呼吸筋への持続刺激と酸素摂取効率の向上。\nフォーム：胸郭を前へ押し出し、腕を軽く振る。\n負荷：全力15秒→レスト30秒×10本。",
-  "MBチェストパス→リバウンドキャッチ":"目的：胸郭前方出力と反応神経の連動。\nフォーム：胸で押し出す感覚でパス、反射的にキャッチ。\n負荷：12回×3セット。",
-  "リブスライド・ランジ":"目的：胸郭と骨盤の横滑りを伴う動的安定性。\n方法：ランジ姿勢でリブを左右にスライド、前脚の安定を保つ。\n回数：10往復×2セット。",
-  "トレッドミル 15s×45s×8":"目的：回復力強化（有酸素＋心拍コントロール）。\nフォーム：胸郭で呼吸をコントロールしながら走る。\n負荷：全力15秒→レスト45秒×8本。",
-  "HEXバー・スプリントDL（軽負荷）":"目的：軽負荷でのリズム出力維持。動作効率の再確認。\n負荷：40〜50%1RM ×6回×3セット。",
-  "リブドライブ・バウンス":"目的：接地反応と呼吸リズムの連動強化。\n方法：軽いバウンスを繰り返しながらリブで上下動を制御。\n時間：30秒×3セット。"
+  "デッドバグマーチ":"目的：呼吸下で体幹を安定させながら四肢を動かす。\nフォーム：背中全体を床に接地、呼気で肋骨を下げながら脚を動かす。\n負荷：各脚10回×2セット。\nミス：腰が浮く、呼吸が止まる。",
+
+  // === DAY2 ===
+  "リブスライド・ランジ":"目的：胸郭と骨盤の横滑りを伴う動的安定性。\n方法：ランジ姿勢でリブを左右にスライド、前脚の安定を保つ。\n回数：10往復×2セット。\nポイント：胸郭主導で脚に力を伝える。",
+  "スライドボード・ラテラルランジ":"目的：股関節外転筋・内転筋の滑走性と安定化。\nフォーム：滑る脚の股関節を伸展し、軸脚で受け止める。\n負荷：10回×3セット。\nミス：体幹が傾く、胸郭が後退する。",
+  "トレッドミル 15s×10":"目的：呼吸筋への持続刺激と酸素摂取効率の向上。\nフォーム：胸郭を前へ押し出し、腕を軽く振る。\n負荷：全力15秒→レスト30秒×10本。\nミス：前傾しすぎ、腰で走る。",
+  "ハンドウォーク to プランク":"目的：体幹安定と肩甲帯コントロールの連動。\n方法：立位から手を前に歩かせてプランク、戻す。\n回数：8回×2セット。\nポイント：肋骨を引き下げて腰を反らさない。",
+  "リアクティブ・ジャンプ":"目的：接地反応と弾性制御能力の育成。\n方法：小刻みなジャンプを連続で行い、接地時間を最小化。\n時間：15〜20秒×3セット。\nポイント：音を立てずに跳び、足裏と胸郭のリズムを合わせる。",
+
+  // === DAY3 ===
+  "トレッドミル 15s×45s×8":"目的：回復力強化（有酸素＋心拍コントロール）。\nフォーム：胸郭で呼吸をコントロールしながら走る。\n負荷：全力15秒→レスト45秒×8本。HRmax80〜85%維持。\nミス：呼吸が浅く、胸郭が硬まる。",
+  "HEXバー・スプリントDL（軽負荷）":"目的：速筋反応の維持と出力コントロール。\n方法：軽めの重量で加速意識を強調し、フォーム精度を確認。\n負荷：40〜50%1RM ×4〜5回 ×3セット。\nポイント：胸郭リードで床反力を伝える。",
+  "リアクティブ・スクワット":"目的：下肢伸展反応と姿勢安定を統合。\n方法：素早くしゃがみ、床反力を利用して跳ね返る。\n回数：6〜8回×3セット。\nポイント：力で跳ぶのではなく、反発で戻る感覚。",
+  "スライドボード・スプリント":"目的：滑走中の股関節伸展・屈曲のスムーズな切替。\n方法：前傾姿勢を維持しながら交互に脚を滑らせる。\n時間：15〜20秒×3セット。\nポイント：上体固定、脚をリズミカルに動かす。",
+  "リブリード・ヒップロール":"目的：肋骨主導で骨盤を倒す連動性。\n方法：仰向けで両膝90°、肋骨で骨盤を左右に倒す。\n回数：10回×2セット。"
 };
 
-// === 各種目画像 ===
+// === 画像パス ===
 const images = {
   "リブシフト・プランク":"images/core01.jpg",
   "サイドリブ・プランク":"images/core02.jpg",
@@ -258,21 +270,22 @@ const images = {
   "リブリード・ヒップロール":"images/core04.jpg",
   "リブローテーション・スフィンクス":"images/core05.jpg",
   "HEXバー・スプリントDL":"images/hex_dl.jpg",
+  "スプリント・ランジステップ":"images/sprint_lunge.jpg",
   "自走式トレッドミル 10s×8":"images/treadmill10s.jpg",
   "ハンドリリースプッシュアップ":"images/pushup.jpg",
-  "スプリント・ランジステップ":"images/sprint_lunge.jpg",
   "デッドバグマーチ":"images/deadbug.jpg",
-  "MBローテーショントス":"images/mb_toss.jpg",
+  "リブスライド・ランジ":"images/rib_slide_lunge.jpg",
   "スライドボード・ラテラルランジ":"images/slide_lunge.jpg",
   "トレッドミル 15s×10":"images/treadmill15s.jpg",
-  "MBチェストパス→リバウンドキャッチ":"images/mb_pass.jpg",
-  "リブスライド・ランジ":"images/rib_slide_lunge.jpg",
-  "トレッドミル 15s×45s×8":"images/treadmill45s.jpg",
+  "ハンドウォーク to プランク":"images/handwalk.jpg",
+  "リアクティブ・ジャンプ":"images/reactive_jump.jpg",
+  "トレッドミル 15s×45s×8":"images/treadmill15s45s.jpg",
   "HEXバー・スプリントDL（軽負荷）":"images/hex_dl_light.jpg",
-  "リブドライブ・バウンス":"images/rib_bounce.jpg"
+  "リアクティブ・スクワット":"images/reactive_squat.jpg",
+  "スライドボード・スプリント":"images/slide_sprint.jpg"
 };
 
-// === モーダル ===
+// === モーダル制御 ===
 const modal=document.getElementById('exerciseModal');
 const exTitle=document.getElementById('exTitle');
 const exDetail=document.getElementById('exDetail');
@@ -295,7 +308,7 @@ const rpeSlider=document.getElementById('rpe');
 const rpeVal=document.getElementById('rpeVal');
 rpeSlider.addEventListener('input',()=>{rpeVal.textContent="RPE: "+rpeSlider.value;});
 
-// === データ保存 ===
+// === データ保存＆フィードバック ===
 document.getElementById('saveBtn').addEventListener('click',()=>{
   const data={
     cmj:document.getElementById('cmj').value,
@@ -328,7 +341,7 @@ function showFeedback(data){
   document.getElementById('feedback').innerHTML=fb;
 }
 
-// === 初期化 ===
+// === 初回ロード ===
 window.addEventListener('load',()=>{
   if(!localStorage.getItem('initShown')){
     alert('Next Season Fitness｜初期設定完了');
@@ -342,11 +355,10 @@ window.addEventListener('load',()=>{
     document.getElementById('avgHR').value=d.avgHR;
     document.getElementById('maxHR').value=d.maxHR;
     document.getElementById('recoveryTime').value=d.recovery;
-    rpeSlider.value=d.rpe;rpeVal.textContent="RPE: "+d.rpe;
+    rpeSlider.value=d.rpe;
+    rpeVal.textContent="RPE: "+d.rpe;
     document.getElementById('comment').value=d.comment;
     showFeedback(d);
   }
 });
 </script>
-</body>
-</html>
