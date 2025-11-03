@@ -289,7 +289,7 @@ document.querySelectorAll('.exercise-list button').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const ex=btn.dataset.ex;
     exTitle.textContent=ex;
-    exDetail.textContent=details[ex]||"詳細情報なし。";
+    exDetail.innerHTML=details[ex]||"詳細情報なし。";
     exImage.src=images[ex]||"images/noimage.jpg";
     modal.style.display='block';
   });
